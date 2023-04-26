@@ -1,31 +1,14 @@
-export default class Car {
-  private id: string | undefined;
-  private model: string;
-  private year: number;
-  private color: string;
-  private status: boolean | undefined;
-  private buyValue: number;
-  private doorsQty: number;
-  private seatsQty: number;
+import ICar from '../Interfaces/ICar';
+import Abstract from './Abstract';
 
-  constructor(
-    id: string | undefined,
-    model: string,
-    year: number,
-    color: string,
-    status: boolean,
-    buyValue: number,
-    doorsQty: number,
-    seatsQty: number,
-  ) {
-    this.id = id;
-    this.model = model;
-    this.year = year;
-    this.color = color;
-    this.status = status || false;
-    this.buyValue = buyValue;
-    this.doorsQty = doorsQty;
-    this.seatsQty = seatsQty;
+export default class Car extends Abstract {
+  private _doorsQty: number;
+  private _seatsQty: number;
+
+  constructor(car: ICar) {
+    super(car.id, car.model, car.year, car.color, car.status || false, car.buyValue);
+    this._doorsQty = car.doorsQty;
+    this._seatsQty = car.seatsQty;
   }
 
   // public get id(): string | undefined {
