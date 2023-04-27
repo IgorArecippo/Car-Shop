@@ -2,13 +2,13 @@ import ICar from '../Interfaces/ICar';
 import Abstract from './Abstract';
 
 export default class Car extends Abstract {
-  private _doorsQty: number;
-  private _seatsQty: number;
+  private doorsQty: number;
+  private seatsQty: number;
 
   constructor(car: ICar) {
     super(car.id, car.model, car.year, car.color, car.status || false, car.buyValue);
-    this._doorsQty = car.doorsQty;
-    this._seatsQty = car.seatsQty;
+    this.doorsQty = car.doorsQty;
+    this.seatsQty = car.seatsQty;
   }
 
   // public get id(): string | undefined {
