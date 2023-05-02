@@ -1,5 +1,6 @@
 import Car from '../Domains/Car';
 import ICar from '../Interfaces/ICar';
+import HttpException from '../Middlewares/ErrorHandler';
 import CarODM from '../Models/CarODM';
 
 export default class CarService {
@@ -30,5 +31,16 @@ export default class CarService {
     const carODM = new CarODM();
     const carList = await carODM.findAll();
     return carList.map((car) => this.createCarDomain(car));
+  }
+
+  public async findById(id: string) {
+    // console.log(id, 'id service');
+    const carODM = new CarODM();
+    const car = await carODM.findById(id);
+    // console.log(car);
+    if (!car) {
+      throw new HttpException(404, 'Car not found'); 
+    }
+    return this.createCarDomain(car);
   }
 }
