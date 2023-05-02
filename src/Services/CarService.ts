@@ -43,4 +43,15 @@ export default class CarService {
     }
     return this.createCarDomain(car);
   }
+
+  public async updateCar(id: string, car: ICar) {
+    const carODM = new CarODM();
+    const carFind = await carODM.findById(id);
+    // console.log(car);
+    if (!carFind) {
+      throw new HttpException(404, 'Car not found');
+    }
+    const carUpdated = await carODM.updateCar(id, car);
+    return this.createCarDomain(carUpdated);
+  }
 }

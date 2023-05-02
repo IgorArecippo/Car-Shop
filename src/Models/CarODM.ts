@@ -55,4 +55,12 @@ export default class CarODM {
     // console.log(result, id, 'model');
     return result;
   }
+
+  public async updateCar(id: string, car: ICar) {
+    if (!isValidObjectId(id)) {
+      throw new HttpException(422, 'Invalid mongo id');
+    }
+    await this.model.findByIdAndUpdate({ _id: id }, { ...car });
+    return this.findById(id);
+  }
 }
