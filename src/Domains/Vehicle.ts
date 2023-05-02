@@ -1,4 +1,4 @@
-export default class Abstract {
+export default class Vehicle {
   protected id: string | undefined;
   protected model: string;
   protected year: number;
