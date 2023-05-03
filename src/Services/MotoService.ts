@@ -37,7 +37,7 @@ export default class MotoService {
     // console.log(id, 'id service');
     const motoODM = new MotorcycleODM();
     const moto = await motoODM.findById(id);
-    // console.log(moto);
+    console.log(moto);
     if (!moto) {
       throw new HttpException(404, 'Motorcycle not found');
     }
