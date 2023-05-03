@@ -3,7 +3,7 @@ import IMotorcycle from '../Interfaces/IMotorcycle';
 import HttpException from '../Middlewares/ErrorHandler';
 import MotorcycleODM from '../Models/MotorcycleODM';
 
-export default class CarService {
+export default class MotoService {
   private createMotoDomain(moto: IMotorcycle | null): Motorcycle | null {
     if (moto) {
       return new Motorcycle(moto);
@@ -29,8 +29,8 @@ export default class CarService {
 
   public async findAll() {
     const motoODM = new MotorcycleODM();
-    const carList = await motoODM.findAll();
-    return carList.map((moto) => this.createMotoDomain(moto));
+    const motoList = await motoODM.findAll();
+    return motoList.map((moto) => this.createMotoDomain(moto));
   }
 
   public async findById(id: string) {
