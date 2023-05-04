@@ -28,7 +28,7 @@ describe('Tests Car service', function () {
   it('tests findAll method', async function () {
     const stub = sinon.stub(CarODM.prototype, 'findAll').resolves(mockCar);
     const carService = new CarService();
-    const allCars = carService.findAll();
+    const allCars = await carService.findAll();
     expect(allCars).to.eql(mockCar);
     stub.restore();
   });
@@ -42,12 +42,13 @@ describe('Tests Car service', function () {
       seatsQty: 5,
       doorsQty: 4,
       buyValue: 5000,
+      status: false,
     };
     const stub = sinon
       .stub(CarODM.prototype, 'findById');
     stub.resolves(car);
     const carService = new CarService();
-    const carId = carService.findById('60c42af7a3b83152bc05d6f3');
+    const carId = await carService.findById('60c42af7a3b83152bc05d6f3');
     expect(carId).to.eql(mockCar[0]);
     stub.restore();
   });

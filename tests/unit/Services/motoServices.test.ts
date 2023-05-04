@@ -28,7 +28,7 @@ describe('Tests Motorcycle service', function () {
   it('tests findAll method', async function () {
     const stub = sinon.stub(MotorcycleODM.prototype, 'findAll').resolves(mockMoto);
     const motoService = new MotoService();
-    const allMotos = motoService.findAll();
+    const allMotos = await motoService.findAll();
     expect(allMotos).to.eql(mockMoto);
     stub.restore();
   });
@@ -38,7 +38,7 @@ describe('Tests Motorcycle service', function () {
       .stub(MotorcycleODM.prototype, 'findById')
       .resolves(mockMoto[0]);
     const motoService = new MotoService();
-    const motoById = motoService.findById('60c42af7a3b83152bc05d6f0');
+    const motoById = await motoService.findById('60c42af7a3b83152bc05d6f0');
     expect(motoById).to.equal(mockMoto[0]);
     stub.restore();
   });

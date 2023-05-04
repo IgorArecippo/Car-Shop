@@ -53,6 +53,7 @@ const mockCar = [
     seatsQty: 4,
     doorsQty: 2,
     buyValue: 500000,
+    status: false,
   },
 ];
 
