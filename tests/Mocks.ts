@@ -43,6 +43,7 @@ const mockCar = [
     seatsQty: 5,
     doorsQty: 4,
     buyValue: 5000,
+    status: false,
   },
   {
     id: '60c42af7a3b83152bc05d6f2',

@@ -18,17 +18,18 @@ describe('Tests Car service', function () {
       seatsQty: 5,
       doorsQty: 4,
       buyValue: 5000,
+      status: false,
     };
     const carCreated = await carService.create(newCar);
-    expect(carCreated).to.equal(mockCar[0]);
+    expect(carCreated).to.eql(mockCar[0]);
     stub.restore();
   });
 
   it('tests findAll method', async function () {
     const stub = sinon.stub(CarODM.prototype, 'findAll').resolves(mockCar);
     const carService = new CarService();
-    const allMotos = carService.findAll();
-    expect(allMotos).to.equal(mockCar);
+    const allCars = carService.findAll();
+    expect(allCars).to.eql(mockCar);
     stub.restore();
   });
 
@@ -47,7 +48,7 @@ describe('Tests Car service', function () {
     stub.resolves(car);
     const carService = new CarService();
     const carId = carService.findById('60c42af7a3b83152bc05d6f3');
-    expect(carId).to.deep.equal(mockCar[0]);
+    expect(carId).to.eql(mockCar[0]);
     stub.restore();
   });
 });

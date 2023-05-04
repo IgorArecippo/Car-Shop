@@ -21,7 +21,7 @@ describe('Tests Motorcycle service', function () {
       status: false,
     };
     const motoCreated = await motoService.create(newMoto);
-    expect(motoCreated).to.equal(mockMoto[0]);
+    expect(motoCreated).to.eql(mockMoto[0]);
     stub.restore();
   });
 
@@ -29,7 +29,7 @@ describe('Tests Motorcycle service', function () {
     const stub = sinon.stub(MotorcycleODM.prototype, 'findAll').resolves(mockMoto);
     const motoService = new MotoService();
     const allMotos = motoService.findAll();
-    expect(allMotos).to.equal(mockMoto);
+    expect(allMotos).to.eql(mockMoto);
     stub.restore();
   });
 
