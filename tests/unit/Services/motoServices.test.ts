@@ -35,11 +35,35 @@ describe('Tests Motorcycle service', function () {
 
   it('tests findById method', async function () {
     const stub = sinon
-      .stub(MotorcycleODM.prototype, 'findAll')
-      .resolves(mockMoto);
+      .stub(MotorcycleODM.prototype, 'findById')
+      .resolves(mockMoto[0]);
     const motoService = new MotoService();
     const motoById = motoService.findById('60c42af7a3b83152bc05d6f0');
     expect(motoById).to.equal(mockMoto[0]);
     stub.restore();
+  });
+
+  it('tests update method', async function () {
+    const updateStub = sinon
+      .stub(MotorcycleODM.prototype, 'updateCar')
+      .resolves(mockMoto[0]);
+    const findStub = sinon
+      .stub(MotorcycleODM.prototype, 'findById')
+      .resolves(mockMoto[0]);
+    const motoService = new MotoService();
+    const mock = {
+      id: '60c42af7a3b83152bc05d6f1',
+      engineCapacity: 16000000,
+      category: 'Street',
+      buyValue: 70000,
+      color: 'Red',
+      model: 'Electra Glide',
+      year: 2022,
+      status: false,
+    };
+    const updated = await motoService.updateCar('60c42af7a3b83152bc05d6f1', mock);
+    expect(updated).to.eq(mockMoto[1]);
+    updateStub.restore();
+    findStub.restore();
   });
 });

@@ -18,13 +18,13 @@ export default abstract class AbstractODM<T> {
     return this.model.find({});
   }
 
-  public async findById(id: string) {
+  public async findById(id: string): Promise<T> {
     if (!isValidObjectId(id)) {
       throw new HttpException(422, 'Invalid mongo id');
     }
     const result = await this.model.findOne({ _id: id }, { __v: false });
     // console.log(result, id, 'model');
-    return result;
+    return result as unknown as T;
   }
 
   public async updateCar(id: string, data: T) {

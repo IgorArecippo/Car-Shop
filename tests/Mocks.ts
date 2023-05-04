@@ -1,7 +1,7 @@
-import ICar from '../src/Interfaces/ICar';
-import IMotorcycle from '../src/Interfaces/IMotorcycle';
+// import ICar from '../src/Interfaces/ICar';
+// import IMotorcycle from '../src/Interfaces/IMotorcycle';
 
-const mockMoto: IMotorcycle[] = [
+const mockMoto = [
   {
     id: '60c42af7a3b83152bc05d6f0',
     engineCapacity: 1300,
@@ -34,7 +34,7 @@ const mockMoto: IMotorcycle[] = [
   },
 ];
 
-const mockCar: ICar[] = [
+const mockCar = [
   {
     id: '60c42af7a3b83152bc05d6f3',
     model: 'GOl',
