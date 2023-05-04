@@ -8,7 +8,7 @@ import { mockMoto } from '../../Mocks';
 
 describe('Tests Motorcycle service', function () {
   it('tests create method', async function () {
-    sinon.stub(MotorcycleODM.prototype, 'create').resolves(mockMoto[0]);
+    const stub = sinon.stub(MotorcycleODM.prototype, 'create').resolves(mockMoto[0]);
     const motoService = new MotoService();
     const newMoto = {
       id: '60c42af7a3b83152bc05d6f0',
@@ -22,5 +22,24 @@ describe('Tests Motorcycle service', function () {
     };
     const motoCreated = await motoService.create(newMoto);
     expect(motoCreated).to.equal(mockMoto[0]);
+    stub.restore();
+  });
+
+  it('tests findAll method', async function () {
+    const stub = sinon.stub(MotorcycleODM.prototype, 'findAll').resolves(mockMoto);
+    const motoService = new MotoService();
+    const allMotos = motoService.findAll();
+    expect(allMotos).to.equal(mockMoto);
+    stub.restore();
+  });
+
+  it('tests findById method', async function () {
+    const stub = sinon
+      .stub(MotorcycleODM.prototype, 'findAll')
+      .resolves(mockMoto);
+    const motoService = new MotoService();
+    const motoById = motoService.findById('60c42af7a3b83152bc05d6f0');
+    expect(motoById).to.equal(mockMoto[0]);
+    stub.restore();
   });
 });
